@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-// import App from './App';
-import App from './CarChart';
+import App from './container/App';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -13,6 +12,7 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
+import 'chartjs-plugin-dragdata'
 
 ChartJS.register(
   CategoryScale,
