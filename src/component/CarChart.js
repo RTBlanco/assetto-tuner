@@ -41,8 +41,8 @@ function CarChart() {
     },{
       label: 'Dataset 2',
       data: [0, 20, 20, 60, 60, 120, NaN, 180, 120, 125, 105, 110, 170],
-      borderColor: 'rgb(255, 99, 132)',
-      backgroundColor: 'rgba(255, 99, 132, 0.5)',
+      borderColor: 'rgb(12, 87, 248)',
+      backgroundColor: 'rgba(12, 87, 248, 0.5)',
       tension: 0.1,
       dragData: true
     }],
