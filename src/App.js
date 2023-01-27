@@ -1,4 +1,5 @@
 import './App.css';
+import PowerInput from './components/PowerInput';
 import { useState, useRef } from 'react';
 import { Line } from 'react-chartjs-2';
 import 'chartjs-plugin-dragdata'
@@ -117,6 +118,10 @@ function App() {
       <div>
         <textarea onChange={handleChange} value={powerText}></textarea>
         <button onClick={handleClick}>Enter</button>
+      </div>
+
+      <div>
+        <PowerInput handleChange={handleChange} handleClick={handleClick} />
       </div>
       
       <Line options={options} data={data} plugins={options.plugins}/>
