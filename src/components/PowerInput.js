@@ -1,11 +1,14 @@
-import { useState, useRef } from 'react';
+import '../style/PowerInput.css'
+
 
 function PowerInput({handleChange, handleClick, powerText}) {
 
   return(
-    <div id='power-input'>
-      <textarea onChange={handleChange} value={powerText}></textarea>
-      <button onClick={handleClick}>Enter</button>
+    <div className='power-inputs'>
+      <form id='power-lut'>
+        <label>Power.lut</label>
+        <textarea onChange={handleChange} value={powerText}></textarea>
+      </form>
     </div>
   )
 }
