@@ -15,7 +15,7 @@ function App() {
   ref.nm = nm
   ref.bhp = bhp
 
-  const handleClick = (e) => {
+  const enterData = (e) => {
     let power = document.getElementsByTagName('textarea')[0].value
     let powerArray = power.split(/\r|\n/g)
   
@@ -42,7 +42,9 @@ function App() {
   const updatedPower = () => {
     let str = ''
     for( let i = 0; i < ref.rpm.length; i++) {
-      if (i == ref.rpm.length ) {
+
+      // if iteration is the last one remove new line
+      if ((i + 1) < ref.rpm.length ) {
         str = str + `${ref.rpm[i]}|${ref.nm[i]}\n`
       } else {
         str = str + `${ref.rpm[i]}|${ref.nm[i]}`
@@ -53,6 +55,7 @@ function App() {
   }
 
   const handleChange = e => {
+    enterData()
     setPowerText(e.target.value)
   }
 
@@ -63,38 +66,7 @@ function App() {
   ref.rpm = rpm
   ref.nm = nm
   const labels = ref.rpm;
-  
-  const options = {
-    responsive: true,
-    scales: {
-      y:{
-        position: 'right',
-      }
-    },
-    plugins: {
-      legend: {
-        position: 'top',
-      },
-      title: {
-        display: true,
-        text: 'Chart.js Line Chart',
-      },
-      dragData: {
-        round: 1,
-        onDragStart: (e) => {
-          console.log(e)
-        },
-        onDrag: (e, datasetIndex, index, value) => {
-          // console.log(datasetIndex, index, value)
-        },
-        onDragEnd: (e, datasetIndex, index, value) => {
-          // console.log(datasetIndex, ref.rpm[index], value)
-          updatedPower()
-        }
-      },
-    },
-  };
-  
+
   const data = {
     labels,
     datasets: [{
@@ -113,13 +85,47 @@ function App() {
       dragData: false
     }],
   };
+  
+  const options = {
+    responsive: true,
+    scales: {
+      y:{
+        position: 'right',
+      }
+    },
+    plugins: {
+      legend: {
+        position: 'top',
+      },
+      title: {
+        display: true,
+        text: 'Assetto Tuner',
+      },
+      dragData: {
+        round: 1,
+        onDragStart: (e) => {
+          console.log(e)
+        },
+        onDrag: (e, datasetIndex, index, value) => {
+          // console.log(datasetIndex, index, value)
+          updatedPower()
+        },
+        onDragEnd: (e, datasetIndex, index, value) => {
+          // console.log(datasetIndex, ref.rpm[index], value)
+          enterData()
+        }
+      },
+    },
+  };
 
   return(
     <>
-      
-      <PowerInput handleChange={handleChange} handleClick={handleClick} powerText={powerText}/>
-      <div id='dyno-graph'>
-        <Line options={options} data={data} plugins={options.plugins}/>
+      <h1 id='title'>Assetto Tuner</h1>
+      <div className="app">
+        <PowerInput handleChange={handleChange} powerText={powerText}/>
+        <div id='dyno-graph'>
+          <Line options={options} data={data} plugins={options.plugins}/>
+        </div>
       </div>
     </>
   )
