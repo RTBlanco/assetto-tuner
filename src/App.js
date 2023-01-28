@@ -42,9 +42,13 @@ function App() {
   const updatedPower = () => {
     let str = ''
     for( let i = 0; i < ref.rpm.length; i++) {
-      str = str + `${ref.rpm[i]}|${ref.nm[i]}\n`
+      if (i == ref.rpm.length ) {
+        str = str + `${ref.rpm[i]}|${ref.nm[i]}\n`
+      } else {
+        str = str + `${ref.rpm[i]}|${ref.nm[i]}`
+      }
     }
-    console.log(str)
+
     setPowerText(str)
   }
 
@@ -84,7 +88,7 @@ function App() {
           // console.log(datasetIndex, index, value)
         },
         onDragEnd: (e, datasetIndex, index, value) => {
-          console.log(datasetIndex, ref.rpm[index], value)
+          // console.log(datasetIndex, ref.rpm[index], value)
           updatedPower()
         }
       },
@@ -109,22 +113,14 @@ function App() {
       dragData: false
     }],
   };
-  
-  // console.log(rpm)
-  // console.log(nm)
 
   return(
     <>
-      <div>
-        <textarea onChange={handleChange} value={powerText}></textarea>
-        <button onClick={handleClick}>Enter</button>
-      </div>
-
-      <div>
-        <PowerInput handleChange={handleChange} handleClick={handleClick} />
-      </div>
       
-      <Line options={options} data={data} plugins={options.plugins}/>
+      <PowerInput handleChange={handleChange} handleClick={handleClick} powerText={powerText}/>
+      <div id='dyno-graph'>
+        <Line options={options} data={data} plugins={options.plugins}/>
+      </div>
     </>
   )
 }
