@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/assetto-tuner/static/css/main.90374850.css",
+    "main.js": "/assetto-tuner/static/js/main.dbda16ef.js",
+    "index.html": "/assetto-tuner/index.html",
+    "main.90374850.css.map": "/assetto-tuner/static/css/main.90374850.css.map",
+    "main.dbda16ef.js.map": "/assetto-tuner/static/js/main.dbda16ef.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.90374850.css",
+    "static/js/main.dbda16ef.js"
+  ]
+}
