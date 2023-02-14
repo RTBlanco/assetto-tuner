@@ -1,28 +1,29 @@
 {
   "name": "assetto-tuner",
-  "homepage": "https://rtblanco.github.io/assetto-tuner",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "private": true,
+  "description": "Electron version",
+  "main": "public/main.js",
+  "homepage": "./",
+  "author": "RTBlanco",
+  "license": "MIT",
   "dependencies": {
+    "@craco/craco": "^7.0.0",
     "@faker-js/faker": "^7.6.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "chart.js": "^3.9.1",
     "chartjs-plugin-dragdata": "^2.2.5",
     "react": "^18.2.0",
     "react-chartjs-2": "^5.1.0",
     "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+    "react-scripts": "5.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "electron .",
+    "build": "craco build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
@@ -43,6 +44,7 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^5.0.0"
+    "electron": "^23.0.0",
+    "webpack-node-externals": "^3.0.0"
   }
 }
