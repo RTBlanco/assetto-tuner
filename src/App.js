@@ -121,6 +121,7 @@ function App() {
   return(
     <>
       <h1 id='title'>Assetto Tuner</h1>
+      <h2>{window.versions.node()}</h2>
       <div className="app">
         <PowerInput handleChange={handleChange} powerText={powerText}/>
         <div id='dyno-graph'>
