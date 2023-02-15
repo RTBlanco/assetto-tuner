@@ -4,6 +4,9 @@ import { useState, useRef } from 'react';
 import { Line } from 'react-chartjs-2';
 import 'chartjs-plugin-dragdata'
 
+const fs = window.require('fs')
+const pathModule = window.require('path')
+
 function App() {
   const [rpm, setRpm] = useState([])
   const [nm, setNm] = useState([])
