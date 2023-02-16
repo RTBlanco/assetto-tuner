@@ -18,8 +18,11 @@ function App() {
 
   const enterData = (e) => {
     let power = versions.readLUT()
-    let powerArray = power.split(/\r|\n/g)
-  
+    // let power = document.getElementsByTagName('textarea')[0].value
+    let powerArray = power.split(/\r|\n/g).filter(n => n) //improve
+
+    // let powerArray = power.split(/\r|\n/g)
+    console.log(powerArray)
     let preRpm = []
     let prenm = []
     let prebhp = []
