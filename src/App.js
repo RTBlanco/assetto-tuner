@@ -4,8 +4,6 @@ import { useState, useRef } from 'react';
 import { Line } from 'react-chartjs-2';
 import 'chartjs-plugin-dragdata'
 
-const fs = window.require('fs')
-const pathModule = window.require('path')
 
 function App() {
   const [rpm, setRpm] = useState([])
@@ -19,7 +17,7 @@ function App() {
   ref.bhp = bhp
 
   const enterData = (e) => {
-    let power = document.getElementsByTagName('textarea')[0].value
+    let power = versions.readLUT()
     let powerArray = power.split(/\r|\n/g)
   
     let preRpm = []
@@ -124,8 +122,9 @@ function App() {
   return(
     <>
       <h1 id='title'>Assetto Tuner</h1>
+      <button onClick={enterData}>Enter</button>
       <div className="app">
-        <PowerInput handleChange={handleChange} powerText={powerText}/>
+        {/* <PowerInput handleChange={handleChange} powerText={powerText}/> */}
         <div id='dyno-graph'>
           <Line options={options} data={data} plugins={options.plugins}/>
         </div>
