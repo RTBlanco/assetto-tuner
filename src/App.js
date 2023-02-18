@@ -1,6 +1,6 @@
 import './App.css';
 import PowerInput from './components/PowerInput';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
 import 'chartjs-plugin-dragdata'
 
@@ -9,12 +9,17 @@ function App() {
   const [rpm, setRpm] = useState([])
   const [nm, setNm] = useState([])
   const [bhp, setBhp] = useState([])
-  const [powerText, setPowerText] = useState('')
+  // const [powerText, setPowerText] = useState('')
+  const [peak, setPeak] = useState('')
   const ref = useRef([])
 
   ref.rpm = rpm
   ref.nm = nm
   ref.bhp = bhp
+
+  useEffect(() => {
+    enterData()
+  },[])
 
   const enterData = (e) => {
     let power = versions.readLUT()
@@ -22,7 +27,6 @@ function App() {
     let powerArray = power.split(/\r|\n/g).filter(n => n) //improve
 
     // let powerArray = power.split(/\r|\n/g)
-    console.log(powerArray)
     let preRpm = []
     let prenm = []
     let prebhp = []
@@ -40,7 +44,7 @@ function App() {
     setRpm(preRpm)
     setNm(prenm)
     setBhp(prebhp)
-    setPowerText(power)
+    // setPowerText(power)
   }
 
   const updatedPower = () => {
@@ -55,13 +59,14 @@ function App() {
       }
     }
 
-    setPowerText(str)
+    // setPowerText(str)
+    versions.writeLut(str)
   }
 
-  const handleChange = e => {
-    enterData()
-    setPowerText(e.target.value)
-  }
+  // const handleChange = e => {
+  //   enterData()
+  //   setPowerText(e.target.value)
+  // }
 
   const converToBhp = (number, torque) => {
     return (number * torque) / 7127
@@ -108,7 +113,7 @@ function App() {
       dragData: {
         round: 1,
         onDragStart: (e) => {
-          console.log(e)
+          // console.log(e)
         },
         onDrag: (e, datasetIndex, index, value) => {
           // console.log(datasetIndex, index, value)
@@ -125,11 +130,13 @@ function App() {
   return(
     <>
       <h1 id='title'>Assetto Tuner</h1>
-      <button onClick={enterData}>Enter</button>
+      {/* <button onClick={enterData}>Enter</button> */}
       <div className="app">
         {/* <PowerInput handleChange={handleChange} powerText={powerText}/> */}
         <div id='dyno-graph'>
           <Line options={options} data={data} plugins={options.plugins}/>
+          <p>Peak HP: {Math.max(bhp)}</p>
+          <p>Peak Torque: {Math.max(nm)}</p>
         </div>
       </div>
     </>
