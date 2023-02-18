@@ -11,12 +11,17 @@ contextBridge.exposeInMainWorld('versions', {
   readLUT: () => {
     let lutPath = path.resolve('src', 'power.lut')
     
-    
-    // return fs.readFile(lutPath, 'utf8', (err, data) => {
-    //   if (err) throw err;
-    //   // console.log(data.toString())
-    // })
     return fs.readFileSync(lutPath, 'utf8')
+  }, 
+
+  writeLut: (text) => {
+    let lutPath = path.resolve('src', 'power.lut')
+
+    fs.writeFile(lutPath, text, err => {
+      if (err) {
+        console.log(err);
+      }
+    })
   }
 
 })
